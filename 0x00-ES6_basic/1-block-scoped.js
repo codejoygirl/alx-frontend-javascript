@@ -1,13 +1,14 @@
 export default function taskBlock(trueOrFalse) {
-  // Use let for block-scoped variables
-  let task = false;
-  let task2 = true;
+  // Declare variables without initializing them
+  var task, task2;
 
-  if (typeof trueOrFalse === "boolean") { // Check if trueOrFalse is a boolean
+  // Assign initial values based on the condition
+  if (trueOrFalse) {
     task = true;
     task2 = false;
   } else {
-    console.error("taskBlock: Invalid argument. Expected boolean value for trueOrFalse.");
+    task = false;
+    task2 = true;
   }
 
   return [task, task2];
