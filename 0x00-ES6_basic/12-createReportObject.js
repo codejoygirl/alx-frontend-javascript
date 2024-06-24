@@ -1,12 +1,28 @@
-export default function createReportObject(employeesList) {
-  const allEmployees = employeesList.reduce((acc, employee) => {
-    const { department, name } = employee; // Destructure department and name
-    acc[department] = acc[department] || []; // Create array if not exists
-    acc[department].push(name); // Push employee name
-    return acc;
-  }, {});
-
-  const getNumberOfDepartments = () => Object.keys(allEmployees).length;
-
-  return { allEmployees, getNumberOfDepartments };
+export function createEmployeesObject(departmentName, employees) {
+  return {
+    [departmentName]: employees,
+  };
 }
+
+export default function createReportObject(employeesList) {
+  return {
+    allEmployees: { ...employeesList },
+    getNumberOfDepartments() {
+      return Object.keys(this.allEmployees).length;
+    }
+  };
+}
+
+const engineeringEmployees = createEmployeesObject('engineering', ['John Doe', 'Guillaume Salva']);
+const marketingEmployees = createEmployeesObject('marketing', ['Jane Smith', 'James Brown']);
+
+const employeesList = {
+  ...engineeringEmployees,
+  ...marketingEmployees
+};
+
+const report = createReportObject(employeesList);
+
+console.log(report.allEmployees);
+console.log(report.getNumberOfDepartments());
+
