@@ -1,24 +1,17 @@
-export function createEmployeesObject(departmentName, employees) {
-  return {
-    [departmentName]: employees,
-  };
-}
-
 export default function createReportObject(employeesList) {
-  return {
-    allEmployees: { ...employeesList },
-    getNumberOfDepartments() {
-      return Object.keys(this.allEmployees).length;
+  const allEmployees = {};
+
+  for (const employee of employeesList) {
+    const { department } = employee;
+
+    if (!allEmployees[department]) {
+      allEmployees[department] = [];
     }
-  };
+
+    allEmployees[department].push(employee.name);
+  }
+
+  const getNumberOfDepartments = () => Object.keys(allEmployees).length;
+
+  return { allEmployees, getNumberOfDepartments };
 }
-
-const engineeringEmployees = createEmployeesObject('engineering', ['John Doe', 'Guillaume Salva']);
-const marketingEmployees = createEmployeesObject('marketing', ['Jane Smith', 'James Brown']);
-
-const employeesList = {
-  ...engineeringEmployees,
-  ...marketingEmployees
-};
-
-const report = createReportObject(employeesList);
