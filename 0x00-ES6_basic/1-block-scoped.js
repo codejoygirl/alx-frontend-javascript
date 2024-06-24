@@ -1,14 +1,12 @@
 export default function taskBlock(trueOrFalse) {
-  // Declare variables without initializing them
-  var task, task2;
+  // Original variables declared with var
+  var task = false;
+  var task2 = true;
 
-  // Assign initial values based on the condition
+  // Conditionally update variables without redeclaring
   if (trueOrFalse) {
-    task = true;
-    task2 = false;
-  } else {
-    task = false;
-    task2 = true;
+    task = true;   // Update task without redeclaring
+    task2 = false; // Update task2 without redeclaring
   }
 
   return [task, task2];
