@@ -22,7 +22,3 @@ const employeesList = {
 };
 
 const report = createReportObject(employeesList);
-
-console.log(report.allEmployees);
-console.log(report.getNumberOfDepartments());
-
